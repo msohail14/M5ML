@@ -1,9 +1,9 @@
 {
     "name": {
         "ar": "أكياس",
-        "en": "Bags"
+        "en": "Lustra"
     },
-    "repository": "https://github.com/GravitInfo/salla_bag_theme",
+    "repository": "https://github.com/msohail14/M5ML",
     "author_email": "tpomits390@gmail.com",
     "features": [
         "mega-menu",
