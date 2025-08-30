@@ -1,0 +1,97 @@
+<section class="relative py-16 md:py-24 overflow-hidden min-h-[600px]" style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 25%, #2563eb 50%, #1d4ed8 75%, #3730a3 100%); 
+           position: relative;">
+
+    <!-- Grid pattern overlay -->
+    <div class="absolute inset-0 opacity-10" style="background-image: 
+                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+                background-size: 40px 40px;
+                background-position: 0 0, 0 0;">
+    </div>
+
+    <!-- Geometric shapes -->
+    <div class="absolute top-0 right-0 w-64 h-64 opacity-20" style="background: linear-gradient(45deg, #ec4899, #be185d); 
+                clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+                transform: translate(25%, -25%) rotate(45deg);">
+    </div>
+
+    <div class="absolute bottom-0 left-0 w-48 h-48 opacity-15" style="background: linear-gradient(45deg, #10b981, #059669); 
+                clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+                transform: translate(-25%, 25%) rotate(-30deg);">
+    </div>
+
+    <!-- Purple accent shape -->
+    <div class="absolute w-32 h-32 opacity-25 top-1/4 right-1/4" style="background: linear-gradient(45deg, #a855f7, #7c3aed); 
+                border-radius: 50%;
+                transform: translateY(-50%);">
+    </div>
+
+    <!-- Additional geometric elements -->
+    <div class="absolute w-24 h-24 top-1/3 left-1/4 opacity-15" style="background: linear-gradient(45deg, #f59e0b, #d97706); 
+                clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+                transform: rotate(15deg);">
+    </div>
+
+    <div class="container relative z-10 py-8">
+        {% if component.title %}
+        <h2 class="relative mb-12 text-4xl font-bold text-center text-white md:text-5xl lg:text-6xl">
+            {{ component.title }}
+            <span class="block w-32 h-1 mx-auto mt-6 bg-yellow-400"></span>
+        </h2>
+        {% endif %}
+
+        <div class="grid gap-8 md:gap-10 md:grid-cols-2 lg:grid-cols-3">
+            {% for video in component.youtube %}
+            <div
+                class="overflow-hidden transition-all duration-300 rounded-lg shadow-xl youtube-entry hover:shadow-2xl">
+                <div class="relative p-4 ">
+                    <lite-youtube videoid="{{video.url}}" class="w-full rounded-lg aspect-video"
+                        style="background-color: #000000;">
+                    </lite-youtube>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+    .s-block--youtube lite-youtube {
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    .youtube-entry {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transform: translateY(0);
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .youtube-entry:hover {
+        transform: translateY(-8px);
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Additional glow effect */
+    .youtube-entry::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent, rgba(255, 255, 255, 0.05));
+        border-radius: 0.5rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .youtube-entry:hover::before {
+        opacity: 1;
+    }
+</style>

@@ -1,0 +1,47 @@
+{#
+| Variable | Type | Description |
+|--------------------------------|----------|------------------------------------------------------------------------------|
+| component | object | Contains merchant settings for fields from twilight.json `component` section |
+| component.slides[].image | string | Image url |
+| component.slides[].title | ?string | |
+| component.slides[].description | ?string | |
+| component.slides | object[] | list of slides |
+| position | int | Sorting number start from zero |
+#}
+<section class="s-block s-block--hero-slider s-block--full-bg wide-placeholder">
+    <salla-slider id="main-slider-{{ position }}" auto-play slider-config='{
+            "lazy": false,
+            "autoplay": {
+                "delay": 3000,
+                "disableOnInteraction": false
+            },
+            "loop": true
+        }' type="fullwidth">
+        <div slot="items">
+            {% for slide in component.slides %}
+            <div class="relative w-full h-screen swiper-slide bg-dark">
+                <a href="{{ slide.url | default('#') }}" class="block w-full h-full">
+                    <div style="background-image: url('{{ slide.image }}');"
+                        class="absolute inset-0 bg-center bg-cover"></div>
+
+                    {# <div class="container relative flex items-end justify-end h-full p-4 text-right text-black">
+                        <div class="max-w-xl p-6 mb-8 mr-8">
+                            {% if slide.title %}
+                            <h2 data-swiper-parallax="-500"
+                                class="mb-4 text-3xl font-bold leading-tight lg:text-5xl drop-shadow-lg">
+                                {{ slide.title }}
+                            </h2>
+                            {% endif %}
+                            {% if slide.description %}
+                            <p data-swiper-parallax="-300" class="line-clamp-2 drop-shadow-md shadow-black">
+                                {{ slide.description }}
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div> #}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </salla-slider>
+</section>

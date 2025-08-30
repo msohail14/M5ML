@@ -1,0 +1,52 @@
+{#
+| Variable | Type | Description |
+|-------------|---------|------------------------------------------------------------------|
+| url | string | |
+| image.url | string | |
+| image.alt | ?string | |
+| position | Int | Sorting number start from zero |
+#}
+<style>
+    .fullscreen-banner {
+        width: 100%;
+        height: 100vh;
+        /* Default height for desktop */
+        object-fit: cover;
+    }
+
+    /* Mobile responsive adjustments */
+    @media (max-width: 768px) {
+        .fullscreen-banner {
+            height: auto;
+            /* Allow height to adjust based on content */
+            min-height: 400px;
+            /* Minimum height on mobile */
+            max-height: 100vh;
+            /* Maximum height constraint */
+            object-position: center;
+            /* Center the image */
+        }
+
+        .banner--fixed {
+            display: block;
+            position: relative;
+            width: 100%;
+        }
+    }
+
+    /* Additional optimization for very small screens */
+    @media (max-width: 480px) {
+        .fullscreen-banner {
+            min-height: 300px;
+        }
+    }
+</style>
+
+<section class="s-block s-block--fixed-banner wide-placeholder">
+    <div class="">
+        <a href="{{ url }}" class="overflow-hidden banner banner--fixed" aria-label="Banner {{ image.alt }}">
+            <img src="{{ image.url }}" alt="{{ image.alt|trim ? image.alt : 'fixed banner' }}" class="fullscreen-banner"
+                loading="lazy" />
+        </a>
+    </div>
+</section>

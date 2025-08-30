@@ -1,0 +1,11 @@
+{
+  "name": "Salla Bag Theme",
+  "identifier": "salla_bag_theme",
+  "version": "1.0.0",
+  "description": "Custom Salla theme for bags store",
+  "author": "Ashish Patel",
+  "categories": ["fashion", "bags", "accessories"],
+  "salla": {
+    "min_version": "2.0.0"
+  }
+}

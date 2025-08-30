@@ -1,0 +1,29 @@
+<section class="relative w-full banner2-section">
+    {% for banner in component.banners %}
+        <a href="{{banner.url}}" class="block relative w-full h-[600px] overflow-hidden">
+            <div 
+                style="background-image: url('{{ banner.image }}');"
+                class="w-full h-full transition-transform duration-500 transform bg-center bg-no-repeat bg-cover hover:scale-105">
+            </div>
+        </a>
+    {% endfor %}
+</section>
+
+<style>
+   
+    .banner2-section a:hover {
+        cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+        .banner2-section a {
+            height: 400px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .banner2-section a {
+            height: 300px;
+        }
+    }
+</style>

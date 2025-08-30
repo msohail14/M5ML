@@ -1,0 +1,151 @@
+<style>
+	.dark-footer {
+		background-color: #131314;
+		color: #e2e8f0;
+		padding-top: 4rem;
+		padding-bottom: 2rem;
+	}
+
+	.s-map-wrapper {
+		.s-map-location-button {
+			.s-map-location-icon {
+				margin-right: 10px;
+			}
+		}
+	}
+
+	.s-map-modal-wrapper {
+		.s-map-modal-body {
+			padding: 0;
+		}
+
+		.s-map-title {
+			position: relative;
+			margin-top: -0.5rem;
+			margin-bottom: 1rem;
+			padding-left: 1rem;
+			padding-right: 1rem;
+		}
+
+		.s-map-modal-body {
+			overflow: hidden;
+			position: relative;
+
+			.s-map-element {
+				height: 400px;
+				width: 100%;
+			}
+
+			.s-map-search-wrapper {
+				position: absolute;
+				top: 0px;
+				z-index: 11;
+				z-index: 1;
+				margin: 20px;
+				width: -webkit-fill-available;
+
+				input {
+					width: 100%;
+					height: 40px;
+					padding: 10px;
+				}
+
+				.s-map-search-results {
+					height: 100px;
+					padding: 10px;
+					margin-top: 1px;
+					display: flex;
+					flex-direction: column;
+				}
+			}
+
+			.s-loading-container {
+				margin: 0;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				padding: 5rem;
+			}
+
+			.s-map-my-location-icon {
+				position: absolute;
+				bottom: 1.5rem;
+				margin: 10px;
+			}
+		}
+	}
+</style>
+<footer class="dark-footer">
+	<div aria-label="footer" class="store-footer__inner">
+		<div class="container grid gap-8 grid-col-1 lg:grid-cols-6 lg:gap-6">
+			<div class="lg:col-span-2 rtl:lg:pl-20 ltr:lg:pr-20">
+				<a href="{{ link('/') }}" class="flex items-center m-0">
+					<h3>{{store.name}}</h3>
+				</a>
+				{% if store.description %}
+				<p class="max-w-sm mb-6 leading-6">
+					{{ store.description|raw }}
+				</p>
+				{% endif %}
+
+				<div class="hidden lg:block">
+					<salla-social class="mb-6"></salla-social>
+				</div>
+
+				{# vat #}
+				{% if store.settings.tax.number %}
+				<div class="flex items-end space-x-2 rtl:space-x-reverse">
+					{% if store.settings.tax.certificate %}
+					<a class="load-img-onclick" data-modal-id="modal-value-tax" href="#/"
+						alt="{{ store.settings.tax.number }}">
+						<img width="100%" height="100%" src="{{ 'images/s-empty.png' | cdn }}"
+							data-src="{{'images/tax.png' | cdn(70,70)}}"
+							class="w-10 transition-opacity rounded-sm lazy hover:opacity-80" alt="value added tax">
+					</a>
+					{% endif %}
+					<div>
+						<p class="mb-1 text-sm text-text-grey">{{ trans('common.elements.tax_number') }}</p>
+						<b class="text-sm">{{ store.settings.tax.number }}</b>
+					</div>
+				</div>
+
+				{% if store.settings.tax.certificate %}
+				<salla-modal sub-title-first sub-title="{{ trans('common.elements.tax_number') }}"
+					modal-title="{{ store.settings.tax.number }}" id="modal-value-tax">
+					<div class="flex justify-center max-w-full">
+						<img class="w-full" loading="lazy" src="{{ 'images/s-empty.png' | cdn }}"
+							data-src="{{ store.settings.tax.certificate }}" alt="{{ store.settings.tax.number }}" />
+					</div>
+				</salla-modal>
+				{% endif %}
+				{% endif %}
+			</div>
+
+			<div>
+				<h3>{{ trans('blocks.footer.pages_links') }}</h3>
+				<salla-menu source="footer"></salla-menu>
+			</div>
+
+			<div>
+				<salla-contacts></salla-contacts>
+
+				<div class="lg:hidden contact-social">
+					<salla-social></salla-social>
+				</div>
+			</div>
+			<div><salla-map api-key="gPAnYXyivuAtzOiE2tYXGpaxxxx" theme="light" searchable="false">
+				</salla-map></div>
+			<salla-apps-icons class="lg:col-span-2 rtl:lg:pr-20 ltr:lg:pl-20"></salla-apps-icons>
+
+		</div>
+	</div>
+
+	<div class="container items-center justify-between py-4 text-center md:flex">
+		<span class="text-sm copyright-text">{% hook copyright %}</span>
+		<salla-payments></salla-payments>
+	</div>
+	</div>
+
+	<span class="hidden bottom-2 rtl:pl-24 ltr:pr-24 md:grid-cols-3 opacity-40"></span>
+</footer>

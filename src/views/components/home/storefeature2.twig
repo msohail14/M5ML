@@ -1,0 +1,293 @@
+<section id="store-feature-201db67c" class="relative py-8 overflow-hidden s-block-features s-store-features md:py-16">
+    <div class="absolute top-0 left-0 rounded-full opacity-20 md:w-72 md:h-72 animated-circle" style="background: linear-gradient(45deg, #fbbf24, #f59e0b); transform: translate(-50%, -50%);"></div>
+    <div class="absolute bottom-0 right-0 w-56 h-56 rounded-full opacity-15 md:w-80 md:h-80 animated-circle" style="background: linear-gradient(45deg, #60a5fa, #3b82f6); transform: translate(50%, 50%);"></div>
+    
+    <div class="container relative z-10">
+        <div class="mb-8 text-center md:mb-12">
+            {% if component.name %}
+                <h2 class="mb-4 text-2xl font-bold text-gray-800 md:text-3xl lg:text-4xl">{{ component.name }}</h2>
+            {% endif %}
+        </div>
+
+        <div class="smart-grid features-count-{{ component.features|length }}">
+            {% for feature in component.features %}
+                <div class="text-center feature-item s-block--features__item hover-scale">
+                    <div class="flex justify-center mb-4 feature-icon">
+                        <div class="flex items-center justify-center w-16 h-16 bg-yellow-400 shadow-lg rounded-xl">
+                            <i class="{{ feature.icon }} text-2xl text-gray-800"></i>
+                        </div>
+                    </div>
+                    <h3 class="mb-3 text-lg font-semibold text-gray-800">{{ feature.title }}</h3>
+                    <p class="text-sm text-gray-600">{{ feature.desc }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+    #store-feature-201db67c {
+        background: linear-gradient(135deg, #fef7ed 0%, #f3f4f6 100%);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Smart Grid Layout - 4 cards per row */
+    .smart-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        max-width: 1280px;
+        margin: 0 auto;
+        justify-items: center;
+    }
+
+    .feature-item {
+        width: 280px; /* Fixed width for consistent card size */
+        min-height: 250px;
+        padding: 2rem 1.5rem;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 1rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    /* Center remaining items in last row */
+    .features-count-1 {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+    
+    .features-count-2 {
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+    }
+    
+    .features-count-3 {
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+    }
+    
+    .features-count-5 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .features-count-5 .feature-item:nth-child(5) {
+        grid-column: 2 / 4;
+    }
+    
+    .features-count-6 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .features-count-6 .feature-item:nth-child(5) {
+        grid-column: 2;
+    }
+    
+    .features-count-6 .feature-item:nth-child(6) {
+        grid-column: 3;
+    }
+    
+    .features-count-7 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .features-count-7 .feature-item:nth-child(5) {
+        grid-column: 1;
+    }
+    
+    .features-count-7 .feature-item:nth-child(6) {
+        grid-column: 2;
+    }
+    
+    .features-count-7 .feature-item:nth-child(7) {
+        grid-column: 3;
+    }
+    
+    .features-count-8 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .hover-scale {
+        transition: transform 0.3s ease;
+    }
+
+    .hover-scale:hover {
+        transform: translateY(-5px);
+    }
+
+    .animated-circle {
+        animation: pulse 4s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: translate(-50%, -50%) scale(1); }
+        50% { transform: translate(-50%, -50%) scale(1.1); }
+        100% { transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .feature-icon {
+        transition: transform 0.3s ease;
+    }
+
+    .s-block--features__item:hover .feature-icon {
+        transform: rotate(5deg);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
+        .smart-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 1.5rem;
+            max-width: 1000px;
+        }
+        
+        .feature-item {
+            width: 280px;
+        }
+        
+        /* Reset specific positioning for tablet */
+        .features-count-5 .feature-item:nth-child(5),
+        .features-count-6 .feature-item:nth-child(5),
+        .features-count-6 .feature-item:nth-child(6),
+        .features-count-7 .feature-item:nth-child(5),
+        .features-count-7 .feature-item:nth-child(6),
+        .features-count-7 .feature-item:nth-child(7) {
+            grid-column: unset;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .smart-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 1.5rem;
+            max-width: 600px;
+        }
+        
+        .feature-item {
+            width: 260px;
+            min-height: 220px;
+            padding: 1.5rem 1rem;
+        }
+    }
+
+    @media (max-width: 640px) {
+        #store-feature-201db67c {
+            padding: 2rem 0;
+        }
+        
+        .container {
+            padding: 0 1rem;
+        }
+        
+        .smart-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem;
+            max-width: 100%;
+        }
+        
+        .feature-item {
+            width: 100%;
+            max-width: 350px;
+            min-height: 200px;
+            padding: 1.5rem;
+            justify-self: center;
+            margin: 0 auto;
+        }
+        
+        .feature-item h3 {
+            font-size: 1.25rem;
+        }
+        
+        .feature-item p {
+            font-size: 0.95rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        #store-feature-201db67c {
+            padding: 1.5rem 0;
+        }
+        
+        .container {
+            padding: 0 0.75rem;
+        }
+        
+        .smart-grid {
+            gap: 1rem;
+        }
+        
+        .feature-item {
+            max-width: 100%;
+            min-height: 180px;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+        }
+        
+        .feature-item .feature-icon div {
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+        
+        .feature-item .feature-icon i {
+            font-size: 1.5rem;
+        }
+        
+        .feature-item h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .feature-item p {
+            font-size: 0.875rem;
+            line-height: 1.4;
+        }
+        
+        /* Title responsive */
+        h2 {
+            font-size: 1.75rem !important;
+            margin-bottom: 1.5rem !important;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .feature-item {
+            padding: 1rem;
+            min-height: 160px;
+        }
+        
+        .feature-item .feature-icon {
+            margin-bottom: 0.75rem;
+        }
+        
+        .feature-item .feature-icon div {
+            width: 3rem;
+            height: 3rem;
+        }
+        
+        .feature-item .feature-icon i {
+            font-size: 1.25rem;
+        }
+        
+        h2 {
+            font-size: 1.5rem !important;
+        }
+    }
+
+    /* Animation for second circle */
+    .animated-circle:nth-child(2) {
+        animation: pulse-reverse 4s infinite;
+    }
+
+    @keyframes pulse-reverse {
+        0% { transform: translate(50%, 50%) scale(1); }
+        50% { transform: translate(50%, 50%) scale(1.1); }
+        100% { transform: translate(50%, 50%) scale(1); }
+    }
+</style>
